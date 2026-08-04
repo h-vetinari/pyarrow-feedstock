@@ -176,6 +176,10 @@ jobs:
         if "%AGENT_JOBSTATUS%" == "Failed" (
             set ENV_ARTIFACT_PREFIX=conda_envs
             set WRK_ARTIFACT_PREFIX=conda_work
+            rem Use a different prefix for failed build artifacts
+            set BLD_ARTIFACT_PREFIX=conda_pkgs_failed
+        ) else (
+            set BLD_ARTIFACT_PREFIX=conda_pkgs
         )
         call ".scripts\create_conda_build_artifacts.bat"
       displayName: Prepare conda build artifacts
